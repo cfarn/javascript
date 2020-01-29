@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sélecteurs Javascript</title>
+    <style>
+    </style>
+    <script>
+        // f° qui s'éxécute ap le chargement de la page. Tout le contenu doit être à l'intérieur
+        window.onload = function (){
+
+            // SÉLECTION NATURELLE D'UN ID
+
+            var monId = titre;
+            console.log(monId);
+
+            // SÉLECTION BY ID
+
+            var monId2 = document.getElementById('titre');
+            console.log(monId2);
+
+            // SÉLECTION BY CLASSNAME
+
+            var mesClasses = document.getElementsByClassName('avion');
+            // je récupère un ensemble : une collection html
+            console.log(mesClasses);
+            // je peux atteindre un des éléments de la collection grâce à l'indice [1]
+            console.log(mesClasses[1]);
+            // innerHTML définit le contenu de la balise
+            console.log(mesClasses[1].innerHTML= 'Nouveau contenu');
+
+            // modifier le contenu du h2 pour marquer 'nouveau titre'
+            console.log(monId2.innerHTML='nouveau titre');
+            // récupérer dans une variable la sélection de mon id
+            // définir un nouveau innerHTML à cette variable
+            var maVar3=document.getElementById('titre');
+            console.log(maVar3);
+            maVar3.innerHTML='Nouveau titre';
+
+            // SÉLECTION BY TAGNAME
+
+            var mesP=document.getElementsByTagName('p');
+            console.log(mesP);
+            // console.log(mesP[0].innerHTML);
+            for(var i=0; i<mesP.length; i++) {
+                console.log(mesP[i].innerHTML);
+                mesP[i].style.marginTop='50px';
+                mesP[i].style.color='RED';
+            }
+            // liste des mots-clés à appliquer avec .style
+            // https://www.w3schools.com/jsref/dom_obj_style.asp
+
+            // querySelector
+
+            var query = document.querySelectorAll('.avion');
+            console.log(query[2]);
+            var query2 = document.querySelector('#titre');
+            console.log(query2);
+
+            // SÉLECTIONNER AIRBUS3 : modifier son contenu en "mon airbus"
+            // styliser cet airbus3 pour y appliquer un fond bleu, un texte blanc et gras
+
+            // var avion3=document.getElementsByClassName('avion');
+            // console.log(avion3[2].innerHTML='mon airbus');
+            // avion3[2].style.background='blue';
+            // avion3[2].style.color='white';
+            // avion3[2].style.fontWeight='bold';
+
+            var query3=document.querySelectorAll('div.avion');
+            console.log(query3[2].innerHTML);
+            query3[2].innerHTML = 'mon airbus';
+            query3[2].style.background = 'blue';
+            query3[2].style.color = '#fff';
+            query3[2].style.fontWeight='bold';
+            query3[2].style.padding='20px';
+            
+
+        } // fin de mon window.onload ne pas effacer
+    </script>
+</head>
+<body>
+    <h2 id="titre">Mon titre de niveau 2</h2>
+    
+    <div class="avion">Airbus 1</div>
+    <div class="avion">Airbus 2</div>
+    <div class="avion">Airbus 3</div>
+
+    <p id="idfirst">Paragraphe 1</p>
+    <p>Paragraphe 2</p>
+    <p title="Infobulle">Paragraphe 3</p>
+    <p>Paragraphe 4</p>
+    <p>Paragraphe 5</p>
+
+    <h2>Mon titre de fin</h2>
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Évènements Javascript</title>
+    <style>
+        #div1{background: purple; color: white; padding: 10px;}
+        #div2{background: cyan; color: #000; padding: 10px;}
+        #div3{background: dodgerblue; color: #000; padding: 10px;}
+        #div4{background: skyblue; color: #000; padding: 10px;}
+        #prenom{width: 50px;}
+        .clickBouton{ background:red; color: #ffffff; width: 70px;}
+    </style>
+</head>
+<body>
+    <h2 ondblclick="fDiv1();">Click</h2>
+    <div id="div1">DIV1</div>
+    <p id="parag">Paragraphe à cliquer</p>
+    <h2>DblClick</h2>
+    <div id="div2">DIV2</div>
+    <h2>Survol (mouseover mouseout)</h2>
+    <div id="div3">DIV3</div>
+    <div id="div4">DIV4</div>
+    <h2>Focus</h2>
+    <form>
+        <label for="">Veuillez saisir votre prénom</label>
+        <input id="prenom" type="text" name="prenom">
+        <input type="submit" name="submit" id="submit" value="ok">
+    </form>
+
+
+    <script>
+        // Le addEvenListener a besoin de 2 arguments : 1. Le mot-clé correspondant à l'évènement (ici le click), 2. La fonction éxécutée lors de l'évènement (ici la f° fDiv1)
+        document.querySelector('#div1').addEventListener('click',fDiv1);
+        function fDiv1() { alert('Div1 est cliquée !'); }
+
+        // Plutôt qu'appeler une f° existante, on peut aussi choisir une f° anonyme, qui s'éxécute sans qu'on fasse appel à elle
+        document.querySelector('#parag').addEventListener('click',function(){alert('par f° anonyme');}); 
+        function fDiv1() { alert('Div1 est cliquée !'); }
+
+        document.getElementById('div2').addEventListener('dblclick',fDiv2);
+        function fDiv2() { alert('Div2 est double cliquée !'); }
+        // var maDiv2 = document.getElementById('div2');
+        // maDiv2.addEventListener('dblclick', fDiv2);
+
+        document.querySelector('#div3').addEventListener('mouseover', fDiv3);
+        function fDiv3() { 
+            // alert('Div3 est survolée !');
+            this.innerHTML = "Div3 est survolée !"; 
+            this.style.fontSize = "24px";
+        }
+
+        document.querySelector('#div3').addEventListener('mouseout', fDiv4);
+        function fDiv4(){ this.innerHTML = "Div3 n\'est plus survolée !"; this.fontSize = "16px";}
+
+        document.querySelector('#div4').addEventListener('mouseout', fDiv4);
+        // function fDiv4() { alert('Div4 n\'est pas survolée !'); }
+
+        // function fDiv4(){
+            // this est un mot-clé qui permet de faire référence à l'élément préc sélectionné, l'élément concerné par la f°.
+            // this.innerHTML = "Div4 n\'est pas survolée !";
+        // }
+        // document.querySelector('#div3').innerHTML = 'Div3 n\'est pas survolée !'};
+
+        document.querySelector('#prenom').addEventListener('focus',inputFocus);
+        function inputFocus(){
+            // alert('Champ focus');
+            this.style.width = "250px";
+        }
+
+        document.querySelector('#prenom').addEventListener('blur', inputBlur);
+        function inputBlur() {
+            // alert('Champ blur');
+            this.style.width = "50px";
+        }
+
+        document.querySelector('#submit').addEventListener('click', inputSubmit); 
+        function inputSubmit(event) { 
+            event.preventDefault(); 
+            // alert('Formulaire validé'); 
+            this.classList.add('clickBouton');
+            console.log(document.querySelector('#prenom').value);
+        }
+
+    </script>
+</body>
+</html>
